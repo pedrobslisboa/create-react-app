@@ -41,6 +41,11 @@ function isInMercurialRepository() {
   }
 }
 
+function installExtraPkgs(){
+  console.log('Installing extra packages');
+  execSync('npm i --save node-sass-chokidar npm-run-all')
+}
+
 function tryGitInit(appPath) {
   let didInit = false;
   try {
@@ -193,6 +198,10 @@ module.exports = function(
       console.error(`\`${command} ${args.join(' ')}\` failed`);
       return;
     }
+  }
+
+  if(installExtraPkgs()){
+    console.log('Done');
   }
 
   if (useTypeScript) {
