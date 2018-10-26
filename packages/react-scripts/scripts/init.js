@@ -100,10 +100,14 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts start',
-    build: 'react-scripts build',
-    test: 'react-scripts test',
-    eject: 'react-scripts eject',
+    start: "npm-run-all -p watchcss startjs",
+    build: "npm-run-all buildcss buildjs",
+    test: "react-scripts test",
+    eject: "react-scripts eject",
+    buildcss: "node-sass-chokidar src/styles/scss -o src/styles/css",
+    watchcss: "node-sass-chokidar src/styles/scss -o src/styles/css --watch",
+    startjs: "react-scripts start",
+    buildjs: "react-scripts build"
   };
 
   // Setup the eslint config
